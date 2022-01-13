@@ -425,7 +425,7 @@ NSErrorDomain const MediaServiceErrorDomain = @"MediaServiceErrorDomain";
                 case NSURLErrorNetworkConnectionLost:
                 case NSURLErrorNotConnectedToInternet:
                     // Clear lack of device internet connection, notify the user
-                    customErrorMessage = NSLocalizedString(@"The internet connection appears to be offline.", @"Error message shown when a media upload fails because the user isn't connected to the internet.");
+                    customErrorMessage = NSLocalizedString(@"The Internet connection appears to be offline.", @"Error message shown when a media upload fails because the user isn't connected to the Internet.");
                     break;
                 default:
                     // Default NSURL error messaging, probably server-side, encourage user to try again
@@ -434,11 +434,15 @@ NSErrorDomain const MediaServiceErrorDomain = @"MediaServiceErrorDomain";
             }
         }
     }
+
+    NSMutableDictionary *userInfo = [[NSMutableDictionary alloc] init];
     if (customErrorMessage) {
-        NSMutableDictionary *userInfo = [[NSMutableDictionary alloc] init];
         userInfo[NSLocalizedDescriptionKey] = customErrorMessage;
-        error = [[NSError alloc] initWithDomain:error.domain code:error.code userInfo:userInfo];
+    } else {
+        userInfo[NSLocalizedDescriptionKey] = error.localizedDescription;
     }
+
+    error = [[NSError alloc] initWithDomain:error.domain code:error.code userInfo:userInfo];
     return error;
 }
 
