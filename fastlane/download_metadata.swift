@@ -1,5 +1,4 @@
 #!/usr/bin/env swift
-
 import Foundation
 
 let glotPressSubtitleKey = "app_store_subtitle"
