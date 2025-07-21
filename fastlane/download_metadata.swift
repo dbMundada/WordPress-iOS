@@ -1,7 +1,6 @@
 #!/usr/bin/env swift
 import Foundation
 
-
 let glotPressSubtitleKey = "app_store_subtitle"
 let glotPressWhatsNewKey = "v19.0-whats-new"
 let glotPressDescriptionKey = "app_store_desc"
